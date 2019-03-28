@@ -1,14 +1,15 @@
 
-package com.GCU;
+package wpd2.groupm;
 
-import com.GCU.servlet.DemoServlet;
-import com.GCU.servlet.ProjectServlet;
+import wpd2.groupm.servlet.DemoServlet;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import wpd2.groupm.servlet.ProjectServlet;
 
 public class Runner {
     @SuppressWarnings("unused")
@@ -38,14 +39,9 @@ public class Runner {
         DemoServlet demoServlet = new DemoServlet(shopName);
         handler.addServlet(new ServletHolder(demoServlet), "/shop/*");
 
-        //instantiating DefaultServlet and setting the requests that it responds to
-        //and adding it to the server
-        DefaultServlet ds = new DefaultServlet();
-        handler.addServlet(new ServletHolder(ds), "/");
-
         //Adding Project
         ProjectServlet projectServlet = new ProjectServlet();
-        handler.addServlet(new ServletHolder(projectServlet), "/project");
+        handler.addServlet(new ServletHolder(projectServlet), "/");
 
         //start the server
         server.start();

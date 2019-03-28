@@ -1,4 +1,4 @@
-package com.GCU;
+package wpd2.groupm;
 
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;

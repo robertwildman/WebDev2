@@ -53,7 +53,7 @@
                 </executions>
                 <configuration>
                     <killAfter>-1</killAfter>
-                    <mainClass>com.GCU.Runner</mainClass>
+                    <mainClass>main.Runner</mainClass>
                     <arguments>
                         <argument>Message Board</argument>
                     </arguments>

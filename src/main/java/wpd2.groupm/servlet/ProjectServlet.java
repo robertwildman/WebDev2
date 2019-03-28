@@ -1,6 +1,6 @@
-package com.GCU.servlet;
+package wpd2.groupm.servlet;
 
-import com.GCU.Classes.Project;
+import wpd2.groupm.Classes.Project;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

@@ -1,7 +1,7 @@
 
-package com.GCU.servlet;
+package wpd2.groupm.servlet;
 
-import com.GCU.MustacheRenderer;
+import wpd2.groupm.MustacheRenderer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,10 +15,11 @@ public class BaseServlet extends HttpServlet {
     @SuppressWarnings("unused")
     static final Logger LOG = LoggerFactory.getLogger(BaseServlet.class);
 
-    public static final  String PLAIN_TEXT_UTF_8 = "text/plain; charset=UTF-8";
-    public static final  String HTML_UTF_8 = "text/html; charset=UTF-8";
+    public static final String PLAIN_TEXT_UTF_8 = "text/plain; charset=UTF-8";
+    public static final String HTML_UTF_8 = "text/html; charset=UTF-8";
     public static final Charset CHARSET_UTF8 = Charset.forName("UTF-8");
     public MustacheRenderer mustache = new MustacheRenderer();
+
     protected BaseServlet() {
     }
 

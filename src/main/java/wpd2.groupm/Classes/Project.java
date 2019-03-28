@@ -1,17 +1,16 @@
-package com.GCU.Classes;
+package wpd2.groupm.Classes;
 
 import java.util.Date;
 import java.util.Random;
 
 public class Project {
     private int id;
-    private String name,description;
-    private Date ExpectedDone,actualDone;
+    private String name, description;
+    private Date ExpectedDone, actualDone;
 
-    public Project()
-    {
+    public Project() {
         Random rand = new Random();
-        this.id =  rand.nextInt(100000);
+        this.id = rand.nextInt(100000);
     }
 
     public int getId() {
