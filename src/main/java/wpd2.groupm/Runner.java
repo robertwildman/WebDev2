@@ -1,6 +1,7 @@
 
 package wpd2.groupm;
 
+import wpd2.groupm.DB.H2Project;
 import wpd2.groupm.servlet.DemoServlet;
 
 import org.eclipse.jetty.server.Server;
@@ -16,10 +17,12 @@ public class Runner {
     private static final Logger LOG = LoggerFactory.getLogger(Runner.class);
 
     private static final int PORT = 9000;
+    private final H2Project h2Project;
     private final String shopName;
 
     private Runner(String shopName) {
         this.shopName = shopName;
+        h2Project = new H2Project();
     }
 
     //the start method, starts the server and sets up the servlets that the server knows
@@ -32,7 +35,7 @@ public class Runner {
         //the root is mapped to
         ServletContextHandler handler = new ServletContextHandler(server, "/", ServletContextHandler.SESSIONS);
         handler.setContextPath("/");
-        handler.setInitParameter("org.eclipse.jetty.servlet.Default." + "resourceBase", "com.GCU/resources/webapp");
+        handler.setInitParameter("org.eclipse.jetty.servlet.Default." + "resourceBase", "src/main/resources/webapp");
 
         //instantiating DemoServlet, see class DemoServlet, and defining the requests that this responds to
         //and adding it to the server
@@ -42,6 +45,7 @@ public class Runner {
         //Adding Project
         ProjectServlet projectServlet = new ProjectServlet();
         handler.addServlet(new ServletHolder(projectServlet), "/");
+        handler.addServlet(new ServletHolder(projectServlet(h2Project)), "/add");
 
         //start the server
         server.start();
