@@ -1,6 +1,7 @@
 
 package com.GCU.servlet;
 
+import com.GCU.MustacheRenderer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,8 +16,9 @@ public class BaseServlet extends HttpServlet {
     static final Logger LOG = LoggerFactory.getLogger(BaseServlet.class);
 
     public static final  String PLAIN_TEXT_UTF_8 = "text/plain; charset=UTF-8";
+    public static final  String HTML_UTF_8 = "text/html; charset=UTF-8";
     public static final Charset CHARSET_UTF8 = Charset.forName("UTF-8");
-
+    public MustacheRenderer mustache = new MustacheRenderer();
     protected BaseServlet() {
     }
 
@@ -25,6 +27,13 @@ public class BaseServlet extends HttpServlet {
         response.setStatus(returnCode);
         response.getOutputStream().write(output);
     }
+
+
+    protected void showView(HttpServletResponse response, String templateName, Object model) throws IOException {
+        String html = mustache.render(templateName, model);
+        issue(HTML_UTF_8, HttpServletResponse.SC_OK, html.getBytes(CHARSET_UTF8), response);
+    }
+
 
     protected void cache(HttpServletResponse response, int seconds) {
         if (seconds > 0) {

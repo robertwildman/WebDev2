@@ -8,7 +8,7 @@ public class Project {
     private String name,description;
     private Date ExpectedDone,actualDone;
 
-    protected Project()
+    public Project()
     {
         Random rand = new Random();
         this.id =  rand.nextInt(100000);

@@ -2,6 +2,7 @@
 package com.GCU;
 
 import com.GCU.servlet.DemoServlet;
+import com.GCU.servlet.ProjectServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -30,7 +31,7 @@ public class Runner {
         //the root is mapped to
         ServletContextHandler handler = new ServletContextHandler(server, "/", ServletContextHandler.SESSIONS);
         handler.setContextPath("/");
-        handler.setInitParameter("org.eclipse.jetty.servlet.Default." + "resourceBase", "src/main/resources/webapp");
+        handler.setInitParameter("org.eclipse.jetty.servlet.Default." + "resourceBase", "com.GCU/resources/webapp");
 
         //instantiating DemoServlet, see class DemoServlet, and defining the requests that this responds to
         //and adding it to the server
@@ -41,6 +42,10 @@ public class Runner {
         //and adding it to the server
         DefaultServlet ds = new DefaultServlet();
         handler.addServlet(new ServletHolder(ds), "/");
+
+        //Adding Project
+        ProjectServlet projectServlet = new ProjectServlet();
+        handler.addServlet(new ServletHolder(projectServlet), "/project");
 
         //start the server
         server.start();
