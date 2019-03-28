@@ -24,7 +24,6 @@ public class ProjectServlet extends BaseServlet {
         Project p = new Project();
         p.setName("First Project");
         p.setDescription("This is my first Ever Project");
-
         return p;
     }
 

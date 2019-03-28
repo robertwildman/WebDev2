@@ -53,7 +53,7 @@
                 </executions>
                 <configuration>
                     <killAfter>-1</killAfter>
-                    <mainClass>wpd2.lab6.Runner</mainClass>
+                    <mainClass>com.GCU.Runner</mainClass>
                     <arguments>
                         <argument>Message Board</argument>
                     </arguments>
@@ -64,8 +64,8 @@
                 <version>3.8.0</version>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>8</source>
+                    <target>8</target>
                 </configuration>
             </plugin>
         </plugins>
