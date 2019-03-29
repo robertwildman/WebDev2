@@ -3,3 +3,9 @@ CREATE TABLE IF NOT EXISTS project (
   name VARCHAR(255),
   desc VARCHAR(255)
 );
+CREATE TABLE IF NOT EXISTS milestone (
+  id int AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255),
+  desc VARCHAR(255),
+  pid int
+);

@@ -2,10 +2,10 @@ package wpd2.groupm.DB;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import wpd2.groupm.Classes.Project;
+import wpd2.groupm.Models.Milestone;
+import wpd2.groupm.Models.Project;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,14 +69,48 @@ public class H2Project implements AutoCloseable {
         try (PreparedStatement ps = connection.prepareStatement(LIST_PERSONS_QUERY)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                out.add(new Project(rs.getString(1),rs.getString(2) , rs.getInt(3)));
+                List<Milestone> m = findMilestone();
+                List<Milestone> m1= new ArrayList<>();
+                    for (Milestone temp : m) {
+                        if(temp.getPid() ==  rs.getInt(3))
+                        {
+                            m1.add(temp);
+                        }
+                }
+                    LOG.info(String.valueOf(m1.size()));
+                out.add(new Project(rs.getString(1),rs.getString(2) , rs.getInt(3),m1));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return out;
     }
+    public void addmilestone(Milestone milestone) {
+        LOG.info("Project added");
+        final String ADD_MILESTONE_QUERY = "INSERT INTO milestone (name,desc,pid) VALUES (?,?,?)";
+        try (PreparedStatement ps = connection.prepareStatement(ADD_MILESTONE_QUERY )) {
+            ps.setString(1, milestone.getName());
+            ps.setString(2, milestone.getDescription());
+            ps.setInt(3, milestone.getPid());
+            ps.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    public List<Milestone> findMilestone() {
+        final String LIST_MILESTONES_QUERY = "SELECT name, desc , id , pid FROM milestone";
+        List<Milestone> out = new ArrayList<>();
+        try (PreparedStatement ps = connection.prepareStatement(LIST_MILESTONES_QUERY)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                out.add(new Milestone(rs.getString(1),rs.getString(2) , rs.getInt(3), rs.getInt(4)));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return out;
+    }
     private void loadResource(String name) {
         try {
             String cmd = new Scanner(getClass().getResource(name).openStream()).useDelimiter("\\Z").next();

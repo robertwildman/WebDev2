@@ -10,6 +10,7 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import wpd2.groupm.servlet.MilestoneServlet;
 import wpd2.groupm.servlet.ProjectServlet;
 
 public class Runner {
@@ -45,6 +46,10 @@ public class Runner {
         //Adding Project
        ProjectServlet projectServlet = new ProjectServlet(h2Project);
         handler.addServlet(new ServletHolder(projectServlet), "/");
+
+        //Adding Milestone
+        MilestoneServlet milestoneServlet = new MilestoneServlet(h2Project);
+        handler.addServlet(new ServletHolder(milestoneServlet), "/milestone");
 
         //start the server
         server.start();

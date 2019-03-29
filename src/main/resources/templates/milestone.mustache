@@ -1,0 +1,26 @@
+<h4> List of Milestones </h4>
+{{#milestone}}
+    <p>===============================================</p>
+    <p> Milestone ID {{id}} </p>
+    <p> Milestone Name: {{name}}</p>
+    <p> Milestone Desc: {{description}} </p>
+    <p> Project ID: {{pid}} </p>
+    <p>===============================================</p>
+{{/milestone}}
+<h4> Add a new Milestone <h4>
+    <form action="?" method="post">
+
+        <div class="new-project">
+            <label for="name">Enter a new Milestone Name here: </label>
+            <input type="text" name="name" required>
+            <br>
+            <label for="desc">Enter a new Milestone Desc here: </label>
+            <input type="text" name="desc" required>
+            <label for="pid">Enter a new Project ID here: </label>
+            <input type="text" name="pid" required>
+        </div>
+        <div class="new-Project">
+            <input type="submit" value="Add!">
+        </div>
+
+    </form>

@@ -1,12 +1,15 @@
-package wpd2.groupm.Classes;
+package wpd2.groupm.Models;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 public class Project {
     private int id;
     private String name, description;
     private Date ExpectedDone, actualDone;
+    private List<Milestone> milestones;
 
     public Project() {
         Random rand = new Random();
@@ -15,11 +18,27 @@ public class Project {
     public Project(String name,String description) {
         this.name = name;
         this.description = description;
+        this.milestones = new ArrayList<>();
     }
     public Project(String name,String description,int id) {
         this.name = name;
         this.description = description;
         this.id = id;
+        this.milestones = new ArrayList<>();
+    }
+    public Project(String name,String description,int id,List<Milestone> milestones) {
+        this.name = name;
+        this.description = description;
+        this.id = id;
+        this.milestones = milestones;
+    }
+
+    public List<Milestone> getmilestones() {
+        return milestones;
+    }
+
+    public void setmilestones(List<Milestone> milestones) {
+        this.milestones = milestones;
     }
 
     public int getId() {

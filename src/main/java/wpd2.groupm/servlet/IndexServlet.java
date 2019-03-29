@@ -1,5 +1,5 @@
 package wpd2.groupm.servlet;
-import wpd2.groupm.Classes.Project;
+import wpd2.groupm.Models.Project;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
