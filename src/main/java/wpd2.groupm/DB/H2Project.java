@@ -53,9 +53,10 @@ public class H2Project implements AutoCloseable {
 
     public void addProject(Project project) {
         LOG.info("Project added");
-        final String ADD_PERSON_QUERY = "INSERT INTO project (name) VALUES (?)";
+        final String ADD_PERSON_QUERY = "INSERT INTO project (name,desc) VALUES (?,?)";
         try (PreparedStatement ps = connection.prepareStatement(ADD_PERSON_QUERY)) {
             ps.setString(1, project.getName());
+            ps.setString(2, project.getDescription());
             ps.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -63,12 +64,12 @@ public class H2Project implements AutoCloseable {
     }
 
     public List<Project> findProject() {
-        final String LIST_PERSONS_QUERY = "SELECT name FROM project";
+        final String LIST_PERSONS_QUERY = "SELECT name, desc , id FROM project";
         List<Project> out = new ArrayList<>();
         try (PreparedStatement ps = connection.prepareStatement(LIST_PERSONS_QUERY)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                out.add(new Project(rs.getString(1)));
+                out.add(new Project(rs.getString(1),rs.getString(2) , rs.getInt(3)));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

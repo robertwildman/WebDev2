@@ -39,7 +39,8 @@ public class ProjectServlet extends BaseServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
-        Project project = new Project(name);
+        String desc = request.getParameter("desc");
+        Project project = new Project(name,desc);
         h2Project.addProject(project);
         response.sendRedirect("/");
     }

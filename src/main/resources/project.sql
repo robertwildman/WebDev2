@@ -1,4 +1,5 @@
 CREATE TABLE IF NOT EXISTS project (
   id int AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255)
+  name VARCHAR(255),
+  desc VARCHAR(255)
 );

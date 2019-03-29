@@ -1,13 +1,20 @@
 <h4> List of Projects </h4>
 {{#project}}
-    <p> Project Name: {{name}}</p>
+    <p>===============================================</p>
+        <p> Project ID {{id}} </p>
+        <p> Project Name: {{name}}</p>
+        <p> Project Desc: {{description}} </p>
+    <p>===============================================</p>
 {{/project}}
 <h4> Add a new Project <h4>
 <form action="?" method="post">
 
-    <div class="new-project">
+    <div class="new-project">m
         <label for="name">Enter a new Project Name here: </label>
         <input type="text" name="name" required>
+        <br>
+        <label for="name">Enter a new Project Desc here: </label>
+        <input type="text" name="desc" required>
     </div>
     <div class="new-Project">
         <input type="submit" value="Add!">
