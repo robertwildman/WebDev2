@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProjectServlet extends BaseServlet {
 
@@ -24,10 +26,10 @@ public class ProjectServlet extends BaseServlet {
 
     //right now, setting the data for the page by hand, later that comes from a data store
     private Object getObject() {
-        Project p = new Project();
-        p.setName("First Project");
-        p.setDescription("This is my first Ever Project");
-        return p;
+        Map<String, Object> context = new HashMap<>();
+        context.put("project", h2Project.findProject());
+        LOG.info(h2Project.findProject().toString());
+        return context;
     }
 
     @Override
@@ -36,11 +38,9 @@ public class ProjectServlet extends BaseServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String first = request.getParameter("first");
-        String last = request.getParameter("last");
-        String email = request.getParameter("email");
-        Person person = new Person(first, last, email);
-        h2Person.addPerson(person);
+        String name = request.getParameter("name");
+        Project project = new Project(name);
+        h2Project.addProject(project);
         response.sendRedirect("/index.html");
     }
 }

@@ -12,6 +12,11 @@ public class Project {
         Random rand = new Random();
         this.id = rand.nextInt(100000);
     }
+    public Project(String name) {
+        this.name = name;
+        Random rand = new Random();
+        this.id = rand.nextInt(100000);
+    }
 
     public int getId() {
         return id;

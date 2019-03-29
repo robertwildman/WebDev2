@@ -33,7 +33,7 @@ public class H2Project implements AutoCloseable {
     public H2Project(String db) {
         try {
             connection = getConnection(db);
-            loadResource("/Project.sql");
+            loadResource("/project.sql");
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
@@ -51,16 +51,24 @@ public class H2Project implements AutoCloseable {
         }
     }
 
-    public void addProject(Project person) {
+    public void addProject(Project project) {
+        LOG.info("Project added");
+        final String ADD_PERSON_QUERY = "INSERT INTO project (name) VALUES (?)";
+        try (PreparedStatement ps = connection.prepareStatement(ADD_PERSON_QUERY)) {
+            ps.setString(1, project.getName());
+            ps.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public List<Project> findProject() {
-        final String LIST_PERSONS_QUERY = "SELECT first, last, email  FROM person";
+        final String LIST_PERSONS_QUERY = "SELECT name FROM project";
         List<Project> out = new ArrayList<>();
         try (PreparedStatement ps = connection.prepareStatement(LIST_PERSONS_QUERY)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                out.add(new Project());
+                out.add(new Project(rs.getString(1)));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -2,3 +2,17 @@
 <h1>{{name}}</h1>
 <p> {{description}}</p>
 <p>Welcome!</p>
+{{#project}}
+    <h2>{{name}}</h2>
+{{/project}}
+<form action="?" method="post">
+
+    <div class="new-project">
+        <label for="name">Enter a new Project Name here: </label>
+        <input type="text" name="name" required>
+    </div>
+    <div class="new-Project">
+        <input type="submit" value="Add!">
+    </div>
+
+</form>

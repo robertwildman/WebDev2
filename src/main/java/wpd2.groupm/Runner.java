@@ -43,9 +43,8 @@ public class Runner {
         handler.addServlet(new ServletHolder(demoServlet), "/shop/*");
 
         //Adding Project
-        ProjectServlet projectServlet = new ProjectServlet();
+       ProjectServlet projectServlet = new ProjectServlet(h2Project);
         handler.addServlet(new ServletHolder(projectServlet), "/");
-        handler.addServlet(new ServletHolder(projectServlet(h2Project)), "/add");
 
         //start the server
         server.start();
