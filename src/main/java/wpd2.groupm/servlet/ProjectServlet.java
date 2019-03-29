@@ -41,7 +41,7 @@ public class ProjectServlet extends BaseServlet {
         String name = request.getParameter("name");
         Project project = new Project(name);
         h2Project.addProject(project);
-        response.sendRedirect("/index.html");
+        response.sendRedirect("/");
     }
 }
 
