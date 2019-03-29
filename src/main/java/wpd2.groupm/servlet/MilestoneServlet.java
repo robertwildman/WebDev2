@@ -43,6 +43,6 @@ public class MilestoneServlet extends BaseServlet {
         int pid = Integer.parseInt(request.getParameter("pid"));
         Milestone milestone = new Milestone(name,desc,pid);
         h2Project.addmilestone(milestone);
-        response.sendRedirect("/");
+        response.sendRedirect("/milestone");
     }
 }

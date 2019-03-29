@@ -23,7 +23,7 @@ public class Runner {
 
     private Runner(String shopName) {
         this.shopName = shopName;
-        h2Project = new H2Project();
+        h2Project = new H2Project("jdbc:h2:~/resources");
     }
 
     //the start method, starts the server and sets up the servlets that the server knows
