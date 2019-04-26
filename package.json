@@ -1,0 +1,22 @@
+{
+  "name": "webdev2",
+  "version": "1.0.0",
+  "description": "A small web application for a university project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robertwildman/WebDev2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robertwildman/WebDev2/issues"
+  },
+  "homepage": "https://github.com/robertwildman/WebDev2#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
