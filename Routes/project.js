@@ -22,13 +22,19 @@ var Connection = require('tedious').Connection;
   var Request = require('tedious').Request;
   var TYPES = require('tedious').TYPES;
 
-  function addProject(name, description, userId, milestoneList){
+  function addProject(name, description, dateDue, DateCompleted, userId){
     this.name = name;
     this.description = description;
     this.userId = userId;
-    this.milestoneRoute = milestoneList;
+    this.dataDue = dataDue;
+    this.DateCompleted = dataCompleted;
 
-    request = new Request("INSERT INTO projects (Name, Description, DataDue, DateCompleted)")
+
+    request = new Request("INSERT INTO projects (Name, Description, DataDue, DateCompleted) VALUES ("+ name + ", "description +", "userId + ", "dataDue + ","dateCompleted +")", function(err){
+      if (err){
+        console.log(err);
+      }
+    });
   }
 
   function deleteProject(id){
@@ -41,7 +47,7 @@ var Connection = require('tedious').Connection;
         console.log(err);
       }
     });
-
+    //insert code that will display the projects of the user
   }
 
 
