@@ -1,6 +1,5 @@
 class account{
   let id;
-  let name;
   let username;
   let password;
   let projectlist [];
@@ -9,14 +8,12 @@ class account{
     //random user id is given
   }
 
-  constructor(name, username password){
-    this.name = name;
+  constructor(username password){
     this.username username;
     this.password = password;
   }
 
-  constructor(name, username, password, id, projectlist){
-    this.name = name;
+  constructor(username, password, id, projectlist){
     this.username username;
     this.password = password;
     this.id= id;
@@ -29,14 +26,6 @@ class account{
 
   set id(id){
     this.id = id;
-  }
-
-  get name(name){
-    return this.name;
-  }
-
-  set name(name){
-    this.name = name;
   }
 
   get username(username){
