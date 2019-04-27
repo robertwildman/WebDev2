@@ -1,5 +1,6 @@
 class project{
   let id;
+  let userId;
   let name;
   let description;
   let date expectedDone = new Date();
@@ -22,11 +23,12 @@ class project{
     this.milestoneList = //new array
   }
 
-  constructor(name, description, id, milestoneList)
+  constructor(name, description, id, , userId, milestoneList)
     this.name = name;
     this.description = description;
     this.id = id;
     this.milestoneList = milestoneList;
+    this.userId;
   }
 
   get milestoneList(milestoneList){
@@ -75,4 +77,12 @@ class project{
 
   set actualDone(actualDone){
     this.actualDone = actualDone;
+  }
+
+  get userId(userId){
+    return this.userId;
+  }
+
+  set userId(userId){
+    this.userId = userId;
   }
