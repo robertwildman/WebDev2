@@ -1,11 +1,6 @@
-const express = require('express');
-const app = express();
-var path = require('path');
-var milestoneRoute = require('./Routes/milestone');
-var accountRoute = require('./Routes/accounts');
-var projectRoute = require('./Routes/project');
-
-var Connection = require('tedious').Connection;
+var express = require('express')
+var router = express.Router();
+/* var Connection = require('tedious').Connection;
     var config = {
         userName: 'wpd2@wpd2',
         password: 'YJO4t3eaTwpC',
@@ -22,15 +17,15 @@ var Connection = require('tedious').Connection;
   var Request = require('tedious').Request;
   var TYPES = require('tedious').TYPES;
 
-  function addProject(name, description, dateDue, DateCompleted, userId){
+  function addProject(name, description, dateDue, dateCompleted, userId){
     this.name = name;
     this.description = description;
     this.userId = userId;
-    this.dataDue = dataDue;
-    this.DateCompleted = dataCompleted;
+    this.dataDue = dateDue;
+    this.DateCompleted = dateCompleted;
 
 
-    request = new Request("INSERT INTO projects (Name, Description, DataDue, DateCompleted) VALUES ("+ name + ", "description +", "userId + ", "dataDue + ","dateCompleted +")", function(err){
+    request = new Request("INSERT INTO projects (Name, Description, DataDue, DateCompleted) VALUES ("+ name + ", " + description +", " + userId + ", "+dataDue + ","+dateCompleted +")", function(err){
       if (err){
         console.log(err);
       }
@@ -51,8 +46,7 @@ var Connection = require('tedious').Connection;
   }
 
 
-var express = require('express')
-var router = express.Router();
+*/
 
 // Add a binding to handle '/api/project
 router.get('/', function(req, res){
