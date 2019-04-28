@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web Development 2 - Project Website!</title>
+</head>
+<body>
+  <form id="ajax-contact" action="/api/account/create" method="POST">
+    <div class="field">
+        <label for="Username">Username:</label>
+        <input type="text" id="Username" name="Username" required>
+    </div>
+
+    <div class="field">
+        <label for="Password">Password:</label>
+        <input type="text" id="Password" name="Password" required>
+    </div>
+    <div class="field">
+        <button type="submit">Send</button>
+    </div>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <h1> <%= message %> </h1>
+  <p>Organise your projects and organise your life</P>
+  
+</body>
