@@ -12,9 +12,11 @@ app.use(express.urlencoded());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/Site'));
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.render('Pages/index', {message: 'Milestone'});
 });
-
+app.get('/create', (req, res) => {
+  res.render('Pages/create', {message: 'Milestone'});
+});
 app.use('/api/milestone', milestoneRoute);
 app.use('/api/account', accountRoute);
 app.use('/api/project', projectRoute);
