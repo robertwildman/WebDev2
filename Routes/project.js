@@ -30,14 +30,14 @@ var Connection = require('tedious').Connection;
     this.DateCompleted = dateCompleted;
 
 
-    request = new Request("INSERT INTO projects (Name, Description, DataDue, DateCompleted) VALUES ("+ name + ", "description +", "userId + ", "dataDue + ","dateCompleted +")", function(err){
+    request = new Request("INSERT INTO projects (Name, Description, DataDue, DateCompleted) VALUES ("+ name + ", " description +", " userId + ", " dataDue + "," dateCompleted +")", function(err){
       if (err){
         console.log(err);
       }
     });
   }
 
-  function deleteProject(id){
+  function deleteProject(ProjectId){
 
   }
 

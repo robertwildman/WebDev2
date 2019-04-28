@@ -24,20 +24,20 @@ var Connection = require('tedious').Connection;
     });
 
     // Adds Milestone
-function addMilestone(name, description, dateDue, dateCompleted, userId){
+function addMilestone(name, description, dateDue, dateCompleted, projectId){
   this.name = name;
   this.description = description;
-  this.dataDue = dateDue;
-  this.DateCompleted = dateCompleted;
-  this.userId = userId;
+  this.dateDue = dateDue;
+  this.dateCompleted = dateCompleted;
+  this.projectId = projectId;
 
-  request = new Request("INSERT INTO milestone (Name, Description, DataDue, DateCompleted) VALUES ("+ name + ", " description + ", " userId + ", " dateDue + "," dateCompleted +")", function(err){
+  request = new Request("INSERT INTO milestone (Name, Description, DataDue, DateCompleted) VALUES ("+ name + ", ", description + ", ", userId + ", ", dateDue + ",", dateCompleted + ",",  projectId + ")", function(err){
     if (err){
       console.log(err);
     }
   });}
 
     //Removes Milestone
-function removeMilestone(){
+function removeMilestone(milestoneId){
 
 }
