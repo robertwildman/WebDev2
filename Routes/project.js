@@ -22,12 +22,12 @@ var Connection = require('tedious').Connection;
   var Request = require('tedious').Request;
   var TYPES = require('tedious').TYPES;
 
-  function addProject(name, description, dateDue, DateCompleted, userId){
+  function addProject(name, description, dateDue, dateCompleted, userId){
     this.name = name;
     this.description = description;
     this.userId = userId;
-    this.dataDue = dataDue;
-    this.DateCompleted = dataCompleted;
+    this.dataDue = dateDue;
+    this.DateCompleted = dateCompleted;
 
 
     request = new Request("INSERT INTO projects (Name, Description, DataDue, DateCompleted) VALUES ("+ name + ", "description +", "userId + ", "dataDue + ","dateCompleted +")", function(err){
