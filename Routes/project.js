@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router();
-var Connection = require('tedious').Connection;
+/* var Connection = require('tedious').Connection;
     var config = {
         userName: 'wpd2@wpd2',
         password: 'YJO4t3eaTwpC',
@@ -46,7 +46,7 @@ var Connection = require('tedious').Connection;
   }
 
 
-
+*/
 
 // Add a binding to handle '/api/project
 router.get('/', function(req, res){
