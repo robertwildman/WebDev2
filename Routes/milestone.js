@@ -8,3 +8,36 @@ router.get('/', function(req, res){
   })
 
 module.exports = router;
+
+var Connection = require('tedious').Connection;
+    var config = {
+        userName: 'wpd2@wpd2',
+        password: 'YJO4t3eaTwpC',
+        server: 'wpd2.database.windows.net',
+        // If you are on Microsoft Azure, you need this:
+        options: {encrypt: true, database: 'WPD2'}
+    };
+    var connection = new Connection(config);
+    connection.on('connect', function(err) {
+    // If no error, then good to proceed.
+        console.log("Connected");
+    });
+
+    // Adds Milestone
+function addMilestone(name, description, dateDue, dateCompleted, userId){
+  this.name = name;
+  this.description = description;
+  this.dataDue = dateDue;
+  this.DateCompleted = dateCompleted;
+  this.userId = userId;
+
+  request = new Request("INSERT INTO milestone (Name, Description, DataDue, DateCompleted) VALUES ("+ name + ", " description + ", " userId + ", " dateDue + "," dateCompleted +")", function(err){
+    if (err){
+      console.log(err);
+    }
+  });}
+
+    //Removes Milestone
+function removeMilestone(){
+
+}
