@@ -59,7 +59,7 @@ router.post('/create', function(req, res) {
   console.log("Incomming Request");
   var bb = req.query.Username,
       cc = req.query.Password;
-      console.log("Username: " + bb);
+      console.log(req.query);
         // If no error, then good to proceed.  
         request = new Request("INSERT Accounts (Username, Password) VALUES (@Username, @Password);", function(err) {  
           if (err) {  
@@ -89,7 +89,10 @@ router.post('/login', function(req, res){
     "SELECT * FROM Accounts  WHERE Username='"+username+"';",
     function(err, rowCount, rows)
     {
-        console.log(rowCount + ' row(s) returned');
+        if(rowCount == 0)
+        {
+          res.render('Pages/index', {message: 'Login Failed'});
+        }
     }
   );
   request.on('row', function(columns) {
