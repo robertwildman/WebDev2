@@ -25,8 +25,9 @@ app.get('/', (req, res) => {
   {
     message = req.query.message;
     userid = req.query.user_id;
+    console.log(userid);
   }
-  res.render('Pages/index', {message: message,user_id: userid});
+  res.render('Pages/index', {message: message,user: userid});
 });
 app.get('/create', (req, res) => {
   var message;
