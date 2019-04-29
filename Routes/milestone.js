@@ -26,7 +26,7 @@ router.get('/', function(req, res){
     res.render('Pages/index', {message: 'Milestone'});
   })
 
-router.get('/MCreate', function(req, res) {
+router.post('/MCreate', function(req, res) {
 		console.log("Incomming Request");
 		var MName = req.body.MilestoneName,
 			MDesc = req.body.MilestoneDesc,
