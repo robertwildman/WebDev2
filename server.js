@@ -59,7 +59,7 @@ app.listen(8000, () => {
          console.log(err);
        }
      // if there is no connection error, then proceed
-     request = new Request("SELECT * FROM Projects WHERE ID='"+ProjectID+"';",
+     request = new Request("SELECT * FROM Projects WHERE UserID='"+UserID+"';",
 	 function(err){
        if (err) {
          console.log(err);}
