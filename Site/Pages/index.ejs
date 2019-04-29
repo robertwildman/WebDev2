@@ -12,23 +12,20 @@
 
   <div class="projectTiles">
           <div class="container">
-              <h4><%= posts.Name %></h4>
-              <p>Start date Insert // end date insert</p>
-              <p><%= posts.Desc %></p>
+              <h4><%= posts.ProjectName %></h4>
+              <p><%= posts.ProjectDue %> // <%= posts.ProjectComp %></p>
+              <p><%= posts.ProjectDesc %></p>
               <a href="#"><p>Shareable link</p></a>
           </div>
       </div>
-
-  <% posts.milestones.forEach(function(milestone){ %>
     <div class="milestoneTiles">
             <div class="container">
-                <h4><%= milestone.Name %></h4>
+                <h4>MileStone name</h4>
                 <p>Start date Insert // end date insert</p>
-                <p><%= milestone.Desc %></p>
+                <p>Milestone Desc</p>
                 <a href="#"><p>Shareable link</p></a>
             </div>
         </div>
-  <% }) %>
 <% }) %>
 
     <div class="projectAdd">
