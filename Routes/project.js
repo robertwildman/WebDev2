@@ -21,13 +21,13 @@ var config =
     }
 }
 // Add a binding to handle '/api/milestone
-router.get('/', function(req, res){
+router.post('/', function(req, res){
     // render the '/api/milestone' view
     res.render('Pages/index', {message: 'Project'});
   })
 
 
-  router.get('/PCreate', function(req, res) {
+  router.post('/PCreate', function(req, res) {
 		console.log("Incomming Request");
 		var PName = req.query.ProjectName,
 			PDesc = req.query.ProjectDesc,
@@ -65,22 +65,22 @@ router.get('/', function(req, res){
 
 });
 
-  router.get('/PDelete', function(req, res){
+  router.post('/PDelete', function(req, res){
     console.log("Incomming Request");
     var ProjectID = req.query.ProjectID;
     var connection = new Connection(config);
     connection.on('connect', function(err){
       if (err) {
         console.log(err);}
-    }
+    })
     // if there is no conenction error, then proceed
     request = new Request("DELETE FROM Projects , Milestones WHERE Project.PROJECTID = Milestone.ProjectID AND ProjectID ='@ProjectID'", function(err){
       if (err) {
         console.log(err);}
     });
-    request.deleteParameter('ProjectID', TYPES.NVarChar,ProjectName);
+    request.addParameter('ProjectID', TYPES.NVarChar,ProjectID);
     request.on('row', function(columns){
-      if ()column.value==null){
+      if (column.value==null){
         console.log('NULL');
       } else {
         console.log("The project has now been deleted");
@@ -89,7 +89,4 @@ router.get('/', function(req, res){
     connection.execSql(request);
     res.send("Done");
    });
-
-  });
-
 module.exports = router;
