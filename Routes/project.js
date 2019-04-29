@@ -101,13 +101,24 @@ router.post('/', function(req, res){
        if (err) {
          console.log(err);}
      })
+
+     connection.on('connect', function(err) {
+       if (err) {
+         console.log(err);
+       }
      // if there is no connection error, then proceed
-     request = new Request("SELECT FROM Projects", function(err){
+     request = new Request("SELECT * FROM Projects", function(err){
        if (err) {
          console.log(err);}
      });
      connection.execSql(request);
      res.send("Done");
     });
+  });
+
+  router.get('/', function(req, res){
+      // render the '/api/project' view
+      res.render('Pages/index/', {message: 'project'});
+  })
 
 module.exports = router;

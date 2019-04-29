@@ -64,6 +64,47 @@ router.get('/MCreate', function(req, res) {
 
 });
 
+// edit a milestone
+router.get('/MEdit', function(req, res) {
+		console.log("Incomming Request");
+		var MName = req.query.MilestoneName,
+			MDesc = req.query.MilestoneDesc,
+			MDateDue = req.query.MilestoneDue,
+			MDateComp = req.query.MilestoneComp,
+			MProjectID = req.query.MilestoneProjectID,
+      MiD = req.query.MilestoneID,
+			connection = new Connection(config);
+			connection.on('connect', function(err) {
+				if (err) {
+          console.log(err);
+			}
+			// If no error, then good to proceed.
+			request = new Request("UPDATE Milestone SET MilestoneName=@MilestoneName, MilestoneDesc=@MilestoneDesc, MilestoneDue=@MilestoneDue, MilestoneComp=@MilestoneComp, MilestoneProjectID=@MilestoneProjectID WHERE MilestoneID=@MilestoneID;", function(err) {
+			  if (err) {
+             console.log(err);}
+			});
+
+			request.addParameter('MilestoneName', TYPES.NVarChar,MName);
+			request.addParameter('MilestoneDesc', TYPES.NVarChar,MDesc);
+			request.addParameter('MilestoneDue', TYPES.NVarChar,MDateDue);
+			request.addParameter('MilestoneComp', TYPES.NVarChar,MDateComp);
+			request.addParameter('MilestoneProjectID', TYPES.NVarChar,MProjectID);
+      request.addParameter('MilestoneID', TYPES.NVarChar,MiD);
+			request.on('row', function(columns) {
+             columns.forEach(function(column) {
+               if (column.value === null) {
+                 console.log('NULL');
+               } else {
+                 console.log("Product id of inserted item is " + column.value);
+               }
+             });
+         });
+         connection.execSql(request);
+       res.send("Done");
+        });
+
+});
+
 router.post('/MDelete', function(req, res){
   console.log("Incomming Request");
   var MilestoneID = req.query.MilestoneID;
