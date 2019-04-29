@@ -20,21 +20,47 @@ var config =
         encrypt: true
     }
 }
-
-    
+var connection = new Connection(config); 
+connection.on('connect', function(err) {  
+  if (err) {  
+    console.log(err); 
+  }
+}); 
     
 // Add a binding to handle '/api/account
 router.get('/', function(req, res){
     // render the '/api/account' view
     res.render('Pages/index', {message: 'Accounts'});
 })
-router.post('/create', function(req, res) {
-  console.log("Incomming Request");
-  var UserN = req.query.Username,
-      PassW = req.query.Password;
+//Get account with a ID
+router.get('/id/:id', function(req, res){
+  // render the '/api/account' view
+  var id = req.params.id;
+  var request = new Request(
+    "SELECT * FROM Accounts  WHERE AccountID="+id+";",
+    function(err, rowCount, rows)
+    {
+        console.log(rowCount + ' row(s) returned');
+    }
+  );
+  request.on('row', function(columns) {
+          var account = {
+              AccountID: columns[0].value,
+              Username: columns[1].value,
+              Password: columns[2].value
+          };
+          console.log(account);
+  });
+  connection.execSql(request);
+  res.send(id);
+});
+//Create an account
+router.get('/create', function(req, res) {
+  console.log("Incoming Request");
+  var UserN = req.query.username,
+      PassW = req.query.password;
       console.log("Username: " + UserN);
       var connection = new Connection(config); 
-      
       connection.on('connect', function(err) {  
         if (err) {  
           console.log(err); 
@@ -42,26 +68,43 @@ router.post('/create', function(req, res) {
         // If no error, then good to proceed.  
         request = new Request("INSERT Accounts (Username, Password) VALUES (@Username, @Password);", function(err) {  
           if (err) {  
-             console.log(err);}
+            res.redirect('/create?message=Error Creating Account');
+          }else{
+            res.redirect('/?message=Account Created');
+          }
          });  
-		 
          request.addParameter('Username', TYPES.NVarChar,UserN);  
-         request.addParameter('Password', TYPES.NVarChar,PassW);
-         request.on('row', function(columns) {  
-             columns.forEach(function(column) {  
-               if (column.value === null) {  
-                 console.log('NULL');  
-               } else {  
-                 console.log("Product id of inserted item is " + column.value);  
-               }  
-             });  
-         });       
+         request.addParameter('Password', TYPES.NVarChar,PassW);     
          connection.execSql(request);
-       res.send("Done");
-        }); 
-          
+        });   
 });
-
+//Login to an account
+router.get('/login', function(req, res){
+  // render the '/api/account' view
+  var username = req.query.username;
+  var password = req.query.password;
+  console.log("Username" + username);
+  var request = new Request(
+    "SELECT * FROM Accounts  WHERE Username='"+username+"';",
+    function(err, rowCount, rows)
+    {
+        if(rowCount == 0)
+        {
+          res.redirect('/?message=Login Failed');
+        }
+    }
+  );
+  request.on('row', function(columns) {
+           if(password == columns[2].value)
+           {
+            res.redirect('/?message=Login Successfull&user_id=' + columns[0].value);
+           }else
+           {
+            res.redirect('/?message=Login Successfull');
+           }
+  });
+  connection.execSql(request);
+}); 
 
 
 module.exports = router;
