@@ -27,6 +27,7 @@ router.post('/', function(req, res){
   })
 
 
+  //create a project
   router.post('/PCreate', function(req, res) {
 		console.log("Incomming Request");
 		var PName = req.query.ProjectName,
@@ -65,6 +66,7 @@ router.post('/', function(req, res){
 
 });
 
+//delete a single project and the related milestones
   router.post('/PDelete', function(req, res){
     console.log("Incomming Request");
     var ProjectID = req.query.ProjectID;
@@ -73,7 +75,7 @@ router.post('/', function(req, res){
       if (err) {
         console.log(err);}
     })
-    // if there is no conenction error, then proceed
+    // if there is no connection error, then proceed
     request = new Request("DELETE FROM Projects , Milestones WHERE Project.PROJECTID = Milestone.ProjectID AND ProjectID ='@ProjectID'", function(err){
       if (err) {
         console.log(err);}
@@ -89,4 +91,23 @@ router.post('/', function(req, res){
     connection.execSql(request);
     res.send("Done");
    });
+
+   //SELECT all the projects
+   router.post('/Pload', function(req, res){
+     console.log("Incomming Request");
+     var ProjectID = req.query.ProjectID;
+     var connection = new Connection(config);
+     connection.on('connect', function(err){
+       if (err) {
+         console.log(err);}
+     })
+     // if there is no connection error, then proceed
+     request = new Request("SELECT FROM Projects", function(err){
+       if (err) {
+         console.log(err);}
+     });
+     connection.execSql(request);
+     res.send("Done");
+    });
+
 module.exports = router;
