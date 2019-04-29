@@ -46,14 +46,14 @@ app.get('/', (req, res) => {
     Projects: [{Name:"Name",Desc:"Desc",DateDue: "Data due",Datecomp:"Never",milestones:[{Name:"Name",Desc:"Desc",DateDue: "Data due",Datecomp:"Never"},{Name:"Name1",Desc:"Desc1",DateDue: "Data due",Datecomp:"Never"}]}]
   }
   var message,userid;
-  if(req.query)
+  if(req.query.user_id)
   {
     message = req.query.message;
     userid = req.query.user_id;
     //Create a user object with All Projects and All Milestones. 
+    filluser(1,res,message);
   }
   filluser(1,res,message);
-  
 });
 app.get('/create', (req, res) => {
   var message;
