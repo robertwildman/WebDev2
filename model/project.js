@@ -23,7 +23,7 @@ class project{
     this.milestoneList = //new array
   }
 
-  constructor(name, description, id, , userId, milestoneList)
+  constructor(name, description, id, userId, milestoneList)
     this.name = name;
     this.description = description;
     this.id = id;
