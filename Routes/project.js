@@ -33,8 +33,7 @@ router.get('/', function(req, res){
 			PDesc = req.query.ProjectDesc,
 			PDateDue = req.query.ProjectDue,
 			PDateComp = req.query.ProjectComp,
-			PUserID = req.query.ProjectUserID,
-			
+			PUserID = req.query.ProjectUserID;
 			var connection = new Connection(config);
 			connection.on('connect', function(err) {
 				if (err) {  
@@ -46,11 +45,11 @@ router.get('/', function(req, res){
              console.log(err);}
 			});  
 			
-			request.addParameter('ProjectName', TYPES.NVarChar,ProjectName); 
-			request.addParameter('ProjectDesc', TYPES.NVarChar,ProjectDesc);
-			request.addParameter('ProjectDue', TYPES.NVarChar,ProjectDue);
-			request.addParameter('ProjectComp', TYPES.NVarChar,ProjectComp);
-			request.addParameter('ProjectUserID', TYPES.NVarChar,ProjectUserID);
+			request.addParameter('ProjectName', TYPES.NVarChar,PName); 
+			request.addParameter('ProjectDesc', TYPES.NVarChar,PDesc);
+			request.addParameter('ProjectDue', TYPES.NVarChar,PDateDue);
+			request.addParameter('ProjectComp', TYPES.NVarChar,PDateComp);
+			request.addParameter('ProjectUserID', TYPES.NVarChar,PUserID);
 			request.on('row', function(columns) {  
              columns.forEach(function(column) {  
                if (column.value === null) {  

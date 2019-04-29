@@ -32,9 +32,8 @@ router.get('/MCreate', function(req, res) {
 			MDesc = req.query.MilestoneDesc,
 			MDateDue = req.query.MilestoneDue,
 			MDateComp = req.query.MilestoneComp,
-			MProjectID = req.query.MilestoneProjectID, 
-			
-			var connection = new Connection(config);
+			MProjectID = req.query.MilestoneProjectID,
+			connection = new Connection(config);
 			connection.on('connect', function(err) {
 				if (err) {  
           console.log(err); 
@@ -45,11 +44,11 @@ router.get('/MCreate', function(req, res) {
              console.log(err);}
 			});  
 			
-			request.addParameter('MilestoneName', TYPES.NVarChar,MilestoneName); 
-			request.addParameter('MilestoneDesc', TYPES.NVarChar,MilestoneDesc);
-			request.addParameter('MilestoneDue', TYPES.NVarChar,MilestoneDue);
-			request.addParameter('MilestoneComp', TYPES.NVarChar,MilestoneComp);
-			request.addParameter('MilestoneProjectID', TYPES.NVarChar,MilestoneProjectID);
+			request.addParameter('MilestoneName', TYPES.NVarChar,MName); 
+			request.addParameter('MilestoneDesc', TYPES.NVarChar,MDesc);
+			request.addParameter('MilestoneDue', TYPES.NVarChar,MDateDue);
+			request.addParameter('MilestoneComp', TYPES.NVarChar,MDateComp);
+			request.addParameter('MilestoneProjectID', TYPES.NVarChar,MProjectID);
 			request.on('row', function(columns) {  
              columns.forEach(function(column) {  
                if (column.value === null) {  
