@@ -97,7 +97,7 @@ router.get('/login', function(req, res){
   request.on('row', function(columns) {
            if(password == columns[2].value)
            {
-            res.redirect('/?message=Login Successfull&user_id=columns[0].value');
+            res.redirect('/?message=Login Successfull&user_id=' + columns[0].value);
            }else
            {
             res.redirect('/?message=Login Successfull');

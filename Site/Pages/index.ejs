@@ -4,7 +4,62 @@
   <title>Web Development 2 - Project Website!</title>
 </head>
 <body>
-    <!-- This is the login screen and below are the Username, Password fields and the login button -->
+
+<% if(locals.user) { %>
+<input type="hidden" value="<%= user.AccountID %>" id="user_id" />
+<% user.Projects.forEach(function(posts){ %>
+  <li><%= posts.Name %> - <%= posts.Desc %> </li>
+  <% posts.milestones.forEach(function(milestone){ %>
+    <li><%= milestone.Name %> - <%= milestone.Desc %> </li>
+  <% }) %>
+<% }) %>
+<form>
+    <div class="field">
+        <label for="pname">Name:</label>
+        <input type="text" id="pname" name="pname" required>
+    </div>
+
+    <div class="field">
+        <label for="pdesc">Description:</label>
+        <input type="text" id="pdesc" name="pdesc" required>
+    </div>
+    <div class="field">
+        <label for="pdatedue">Date Due:</label>
+        <input type="text" id="pdatedue" name="pdatedue" required>
+    </div>
+    <div class="field">
+        <label for="pdatecomp">Date Complete:</label>
+        <input type="text" id="pdatecomp" name="pdatecomp" required>
+    </div>
+    <div class="field">
+        <button id="addproject" onclick>Send</button>
+    </div>
+</form>
+<form>
+    <div class="field">
+        <label for="pname">Name:</label>
+        <input type="text" id="pname" name="pname" required>
+    </div>
+
+    <div class="field">
+        <label for="pdesc">Description:</label>
+        <input type="text" id="pdesc" name="pdesc" required>
+    </div>
+    <div class="field">
+        <label for="pdatedue">Date Due:</label>
+        <input type="text" id="pdatedue" name="pdatedue" required>
+    </div>
+    <div class="field">
+        <label for="pdatecomp">Date Complete:</label>
+        <input type="text" id="pdatecomp" name="pdatecomp" required>
+    </div>
+    <div class="field">
+        <button id="addproject" onclick>Send</button>
+    </div>
+</form>
+<h4> User is logged in! </h4>
+<% } else{ %>  
+<form>
     <div class="field">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
@@ -17,9 +72,7 @@
     <div class="field">
         <button type="submit" id="loginb">Login</button>
     </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script src="/JS/main.js"></script>
-
+</form>
 <% if (locals.message) { %>
     <h2><%= locals.message %></h2>
 <% } %>
@@ -27,4 +80,7 @@
     <h2><%= locals.user_id %></h2>
 <% } %> 
   <p>Organise your projects and organise your life</P>
+<% } %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="/JS/main.js"></script>
 </body>

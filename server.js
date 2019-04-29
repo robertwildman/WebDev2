@@ -20,13 +20,21 @@ cookie: { secure: true }}));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/Site'));
 app.get('/', (req, res) => {
+  var user = 
+  {
+    name: "Robertwildman",
+    AccountID: 2, 
+    Projects: [{Name:"Name",Desc:"Desc",DateDue: "Data due",Datecomp:"Never",milestones:[{Name:"Name",Desc:"Desc",DateDue: "Data due",Datecomp:"Never"},{Name:"Name1",Desc:"Desc1",DateDue: "Data due",Datecomp:"Never"}]}]
+  }
   var message,userid;
   if(req.query)
   {
     message = req.query.message;
     userid = req.query.user_id;
+    console.log(userid);
+    //Create a user object with All Projects and All Milestones. 
   }
-  res.render('Pages/index', {message: message,user_id: userid});
+  res.render('Pages/index', {message: message,user: user});
 });
 app.get('/create', (req, res) => {
   var message;
