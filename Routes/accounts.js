@@ -32,7 +32,7 @@ router.get('/', function(req, res){
     // render the '/api/account' view
     res.render('Pages/index', {message: 'Accounts'});
 })
-//Get account with an ID
+//Get account with a ID
 router.get('/id/:id', function(req, res){
   // render the '/api/account' view
   var id = req.params.id;
@@ -97,10 +97,10 @@ router.get('/login', function(req, res){
   request.on('row', function(columns) {
            if(password == columns[2].value)
            {
-            res.redirect('/?message=Login Successfull&user_id=columns[0].value');
+            res.redirect('/?message=Login Successfull&user_id=' + columns[0].value);
            }else
            {
-            res.redirect('/?message=Login Successful');
+            res.redirect('/?message=Login Successfull');
            }
   });
   connection.execSql(request);
