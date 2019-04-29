@@ -68,11 +68,9 @@ router.get('/create', function(req, res) {
         // If no error, then good to proceed.  
         request = new Request("INSERT Accounts (Username, Password) VALUES (@Username, @Password);", function(err) {  
           if (err) {  
-            req.session.message = "Error Creating Account";
-           res.redirect('/create');
+            res.redirect('/create?message=Error Creating Account');
           }else{
-            req.session.message = "Account Created";
-            res.redirect('/');
+            res.redirect('/?message=Account Created');
           }
          });  
          request.addParameter('Username', TYPES.NVarChar,UserN);  
@@ -92,24 +90,17 @@ router.get('/login', function(req, res){
     {
         if(rowCount == 0)
         {
-          req.session.message = "Login Failed";
-          res.redirect('/');
+          res.redirect('/?message=Login Failed');
         }
     }
   );
   request.on('row', function(columns) {
            if(password == columns[2].value)
            {
-
-            req.session.message = "Login Successfull";
-            res.redirect('/');
-
+            res.redirect('/?message=Login Successfull&user_id=columns[0].value');
            }else
            {
-
-            req.session.message = "Login Failed";
-            res.redirect('/');
-            
+            res.redirect('/?message=Login Successfull');
            }
   });
   connection.execSql(request);
