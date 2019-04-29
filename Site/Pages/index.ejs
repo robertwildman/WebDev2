@@ -8,9 +8,9 @@
 <% if(locals.user) { %>
 <input type="hidden" value="<%= user.AccountID %>" id="user_id" />
 <% user.Projects.forEach(function(posts){ %>
-  <li><%= posts.Name %> - <%= posts.Desc %> </li>
-  <% posts.milestones.forEach(function(milestone){ %>
-    <li><%= milestone.Name %> - <%= milestone.Desc %> </li>
+  <li><%= posts.ProjectName %> - <%= posts.ProjectDesc %> </li>
+  <% posts.Milestone.forEach(function(milestone){ %>
+    <li><%= milestone %>  </li>
   <% }) %>
 <% }) %>
 <form>
