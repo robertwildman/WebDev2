@@ -28,11 +28,11 @@ router.get('/', function(req, res){
 
 router.get('/MCreate', function(req, res) {
 		console.log("Incomming Request");
-		var MName = req.query.MilestoneName,
-			MDesc = req.query.MilestoneDesc,
-			MDateDue = req.query.MilestoneDue,
-			MDateComp = req.query.MilestoneComp,
-			MProjectID = req.query.MilestoneProjectID,
+		var MName = req.body.MilestoneName,
+			MDesc = req.body.MilestoneDesc,
+			MDateDue = req.body.MilestoneDue,
+			MDateComp = req.body.MilestoneComp,
+			MProjectID = req.body.MilestoneProjectID,
 			connection = new Connection(config);
 			connection.on('connect', function(err) {
 				if (err) {
@@ -67,12 +67,12 @@ router.get('/MCreate', function(req, res) {
 // edit a milestone
 router.get('/MEdit', function(req, res) {
 		console.log("Incomming Request");
-		var MName = req.query.MilestoneName,
-			MDesc = req.query.MilestoneDesc,
-			MDateDue = req.query.MilestoneDue,
-			MDateComp = req.query.MilestoneComp,
-			MProjectID = req.query.MilestoneProjectID,
-      MiD = req.query.MilestoneID,
+		var MName = req.body.MilestoneName,
+			MDesc = req.body.MilestoneDesc,
+			MDateDue = req.body.MilestoneDue,
+			MDateComp = req.body.MilestoneComp,
+			MProjectID = req.body.MilestoneProjectID,
+      MiD = req.body.MilestoneID,
 			connection = new Connection(config);
 			connection.on('connect', function(err) {
 				if (err) {

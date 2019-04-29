@@ -29,19 +29,19 @@ router.post('/', function(req, res){
 
   //create a project
   router.post('/PCreate', function(req, res) {
-		console.log("Incomming Request");
-		var PName = req.query.ProjectName,
-			PDesc = req.query.ProjectDesc,
-			PDateDue = req.query.ProjectDue,
-			PDateComp = req.query.ProjectComp,
-			PUserID = req.query.ProjectUserID;
+		console.log(req.body);
+		var PName = req.body.ProjectName,
+			PDesc = req.body.ProjectDesc,
+			PDateDue = req.body.ProjectDue,
+			PDateComp = req.body.ProjectComp,
+			PUserID = req.body.ProjectUserID;
 			var connection = new Connection(config);
 			connection.on('connect', function(err) {
 				if (err) {
           console.log(err);
 			}
 			// If no error, then good to proceed.
-			request = new Request("INSERT Project (ProjectName, ProjectDesc, ProjectDue, ProjectComp, ProjectUserID) VALUES (@ProjectDesc, @ProjectDue, @ProjectComp, @ProjectUserID);", function(err) {
+			request = new Request("INSERT Projects (ProjectName, ProjectDesc, ProjectDue, ProjectComp, ProjectUserID) VALUES (@ProjectName,@ProjectDesc, @ProjectDue, @ProjectComp, @ProjectUserID);", function(err) {
 			  if (err) {
              console.log(err);}
 			});
@@ -63,7 +63,6 @@ router.post('/', function(req, res){
          connection.execSql(request);
        res.send("Done");
         });
-
 });
 
 //delete a single project and the related milestones
