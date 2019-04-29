@@ -17,11 +17,11 @@ $('#addproject').click(function(){
 //Add Milestone
 $('#addmilestone').bind("click",function(){
     $.ajax({
-        url:'/Car/Edit/17/',
+        url:'/api/milestone/MCreate',
         type:'post',
-        data:$('#myForm').serialize(),
+        data:{MilestoneName:$('#mname').val(), MilestoneDesc:$('#mdesc').val(), MilestoneDue:$('#mdatedue').val(), MilestoneComp:$('#mdatecomp').val(), MilestoneUserID:$('#user_id').val()},
         success:function(){
-            //whatever you wanna do after the form is successfully submitted
+            console.log("Pushed");
         }
     });
 });
